@@ -1,0 +1,26 @@
+<<<
+drone d;
+const int riskAltitude = 1;
+
+<> Drone should connect to WiFi after being initialized.
+d.connectWifi[];
+
+<**> This part prevents falling by accident, 
+the drone should rise until it goes up to 5 meters <*>
+if [d.altitude <= riskAltitude] <<
+while[d.altitude < 5] <<
+d. move[up];
+>>
+>>
+
+<> This part starts the spraying by going down.
+if[d.temperature < 30 && d.temperature > 10) <<
+while[d.altitude > 5] <<
+d.move[down];
+>>
+d.nozzleActive[true];
+d.setHeading[0];
+>>
+<> Drone disconnects from WiFi.
+d.disconnectWifi[];
+>>>

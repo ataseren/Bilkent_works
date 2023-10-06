@@ -1,0 +1,73 @@
+<body>
+    <h2>Press F12 to see the answers of homework questions on console.</h2>
+    <script>
+        console.log("Question 1");
+        console.log("Different types of boolean expressions in JavaScript:");
+        console.log(Boolean(1 < 2));
+        console.log(Boolean(1 > 2));
+        console.log(Boolean(1 != 2));
+        console.log(Boolean(1 == 2));
+        console.log("Other than conditions and comparisons, values can be evaluated as booleans with Boolean().");
+        console.log(Boolean(13));
+        console.log(Boolean(13.12));
+        console.log(Boolean(-13));
+        console.log(Boolean("string"));
+        console.log(Boolean('char'));
+        console.log(Boolean(13 + 12 + 68));
+        console.log("Most values are evaluated to \"true\" except empty values.");
+        console.log(Boolean(0));
+        console.log(Boolean(-0));
+        console.log(Boolean(""));
+        console.log(Boolean(''));
+        let x;
+        console.log(Boolean(x));
+        console.log(Boolean(null));
+        console.log(Boolean(false));
+        console.log(Boolean(1/"x"));
+        console.log("\n");
+        console.log("Question 2 and 3");
+        console.log()
+        function helper1() {
+            return "No short circuit";
+        }
+        function helper2() {
+            return "Short circuit in expression with multiple \"||\" operators";
+        }
+        console.log("\"&&\" and \"||\" operators are short circuited.");
+        console.log("To show the short circuit, helper functions \"helper1()\" and \"helper2()\" that returns a text when called has been declared.");
+        console.log("If a short circuit happens, the function won't be called and we don't see its value.");
+        console.log(true && helper1());
+        console.log(false && helper1());
+        console.log(true || helper1());
+        console.log(false || helper1());
+        console.log(false || false || helper2() || true); //true haven't been evaluated
+        console.log("\n");
+        
+        console.log("Question 4");
+        console.log("Short circuiting prevents calling and/or evaluating unnecessary elements in an expression and in this way, increases performance.");
+        console.log("In addition, it prevents errors such as a loop tries to access an out-of-bounds element:");
+        const list = ["a", "b", "c", "d", "e"];
+        let index = 0;
+        while ((index < 5) && (list[index] != "f")){
+            console.log(list[index]);
+            index += 1;
+        }
+        console.log("If there wouldn't be a short circuit mechanism, list[index] in following loop would try to access a non-existent index");
+        console.log("and program would print an undefined value.");
+        console.log("\n");
+
+        console.log("Question 5");
+        console.log("Despite the fact that short circuit prevents performance issues and errors, it sometimes prevent required functions from being called (side effect):");
+
+        let a = 3;
+        let b = 2;
+        function helper3(){
+            return "Program successful";
+        }
+        console.log((a > b) || helper3());
+        //"Program successful" hasn't been printed.
+
+        console.log("If helper3 function would be an important one for a function, loop or any code segment, the program depends on it would fail because short circuit");
+        console.log("has occured and function didn't even be evaluated.");
+    </script>
+</body>

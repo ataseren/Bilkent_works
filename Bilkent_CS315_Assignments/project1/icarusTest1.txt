@@ -1,0 +1,19 @@
+<<<
+<**> This function activates the nozzle until the drone reaches a certain temperature.
+When the drone reaches the maximum temperature, it moves down and stops. <*>
+drone d;
+const int maxTemperature = 80;
+for [ int i = 0; i < 100; i++] <<
+	if [ d.temperature < maxTemperature ] <<
+		d.nozzleActive[true];
+	>>
+	else <<
+		d.nozzleActive[false];	
+while [ d.altitude > 0 ] <<
+	d.move[down];
+	i = 100;
+>>
+	>>
+	d.move[stop];
+>>
+>>>

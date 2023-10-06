@@ -1,0 +1,25 @@
+<<<
+<**>State user, 
+define a drone,
+give commands to it,
+say goodbye!<*>
+icarusout[“Hello Drone!”];
+string user;
+user = icarusin[];
+drone d;
+d.connectWifi[];
+int direction = d.direction[];
+d.setHeading[d + 90];
+d.move[front, 5];
+d.move[right, 5];
+int temp = d.temperature[]
+d.disconnectWifi[checkTemp[temp, 35]];
+icarusout[“Goodbye!”];
+
+bool checkTemp[int drn, int temp] <<
+	if[drn == temp]<<
+		return true;
+	>>
+	else << return false; >>
+>>
+>>>

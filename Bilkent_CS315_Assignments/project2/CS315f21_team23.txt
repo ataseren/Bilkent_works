@@ -1,0 +1,90 @@
+<<<
+<> A sample Icarus program to spray on a rectangular shaped field.
+<> Initialize the drone and connect it to the Wi-Fi.
+drone d1;
+d1.connectWifi[];
+
+<> Get the longer side length of the rectangle from the user.
+icarusout["Choose the length of the longer side."];
+real firstLength;
+firstLength = icarusin[ ];
+
+<> Get the shorter side length of the rectangle from the user.
+icarusout["Choose the length of the longer side."];
+real secondLength;
+secondLength = icarusin[ ];
+
+<> Set the nozzle of the drone active before it sprays the field.
+d1.setMove[up, 20];
+d1.setNozzle[true];
+
+<> Get the direction and set it to a variable.
+real direction;
+direction = d1.readHeading[ ];
+
+for[ real i = 0.0; i < secondLength; i++]
+{
+    <> Spray a side length and turn right. 
+    d1.setMove[front, firstLength];
+    d1.setHeading[direction + 90];
+
+    <> Go for 0.5 meters and then turn right.
+    d1.setMove[front, 0.5];
+    d1.setHeading[direction + 90];
+
+    <> Spray a side length and turn left. 
+    d1.setMove[front, firstLength];
+    d1.setHeading[direction - 90];
+
+    <> Go for 0.5 meters and then turn left.
+    d1.setMove[front, 0.5];
+    d1.setHeading[direction - 90];
+
+    <**> Now the drone is the side of the field again, so
+    repeat it for the shorter side length. <*>
+}
+<> Last side is left, so one more spray after the loop is necessary.
+d1.setMove[front, firstLength]; 
+
+<> Disconnect from the Wi-Fi and deactivate the nozzle.
+d1.setMove[down, 20];
+d1.setNozzle[false];
+d1.disconnectWifi[ ];
+
+<> A sample Icarus program to spray on a triangular field.
+<> Initialize the drone and connect it to the Wi-Fi.
+drone d2;
+d2.connectWifi[ ];
+
+<> Get one side length of the triangle from the user.
+icarusout["Choose the length of the longer side."];
+real length = icarusin[];
+
+<> Set the nozzle of the drone active before it sprays the field.
+d2.setNozzle[true];
+
+<> Get the direction and set it to a variable.
+real direction = d2.readHeading[ ];
+
+d2.setMove[up, 20];
+
+<**>
+Cover the triangular area by starting from a corner and moving towards the center. Move through the two lines of a triangle each time.
+<*>
+
+for[ real i = length; i > 0.0; i--]
+{
+    d2.setMove[front, i];
+    d2.setHeading[direction + 120.0];
+
+    d2.setMove[front, i];
+    d2.setHeading[direction + 120.0];
+}
+
+d2.setMove[down, 20];
+
+<> Disconnect from the Wi-Fi and deactivate the nozzle.
+
+d2.setNozzle[false];
+d2.disconnectWifi[];
+>>>
