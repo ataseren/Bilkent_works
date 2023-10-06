@@ -1,0 +1,24 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class MyOtherActionListener extends MyPanel implements ActionListener
+{
+   public void actionPerformed( ActionEvent e)
+      {
+      int counter = 0;
+      System.out.println("button pressed");
+      counter++;
+      
+      if(counter %2 == 1)
+ 
+         b.setText("OK");
+
+      else
+         b.setText("maybe");
+   }
+}
+         
+         
+         
+       
+       
