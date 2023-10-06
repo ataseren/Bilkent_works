@@ -1,0 +1,152 @@
+`timescale 1ns / 1ps
+
+module four_to_one_mux_b( 
+   	input logic A0, A1, A2, A3,
+   	input logic S0, S1,
+   	output logic out4);
+    assign out4 = (~S0&~S1&A0) | (~S0&S1&A1) | (S0&~S1&A2) | (S0&S1&A3);                                     
+endmodule
+
+
+`timescale 1ns / 1ps
+
+module four_to_one_mux_tb();
+    logic A0, A1, A2, A3, S0, S1, out4;
+ 
+      four_to_one_mux_b test(A0, A1, A2, A3, S0, S1, out4);
+     
+      initial begin
+          #100;
+           
+          A0=0; A1=1; A2=1; A3=0; S0=0; S1=0; #100;
+          A0=0; A1=1; A2=1; A3=0; S0=0; S1=1; #100;
+          A0=0; A1=1; A2=1; A3=0; S0=1; S1=0; #100;
+          A0=0; A1=1; A2=1; A3=0; S0=1; S1=1; #100;
+          
+          A0=1; A1=0; A2=1; A3=0; S0=0; S1=0; #100;
+          A0=1; A1=0; A2=1; A3=0; S0=0; S1=1; #100;
+          A0=1; A1=0; A2=1; A3=0; S0=1; S1=0; #100;
+          A0=1; A1=0; A2=1; A3=0; S0=1; S1=1; #100;
+
+          end
+endmodule
+
+
+`timescale 1ns / 1ps
+
+module eight_to_one_mux_s(
+    input logic I0, I1, I2, I3, I4, I5, I6, I7, sel0, sel1, sel2,
+    output logic out 
+    );
+    logic out0, out1;
+    logic L1,L2;
+
+four_to_one_mux_b mux1(I0, I1, I2, I3, sel1, sel2, out0);
+four_to_one_mux_b mux2(I4, I5, I6, I7, sel1, sel2, out1);
+and(L1,~sel0,out0);
+and(L2,sel0,out1);
+or(out,L1,L2);
+
+//input logic [2:0] a0, a1, a2, a3, a4, a5, a6, a7,
+//input logic [2:0] sel,
+//output logic [2:0] out);
+
+//    logic [2:0]out0, out1;
+//    logic [2:0]L1, L2;
+//    four_to_one_mux_b mux1(a0,a1,a2,a3, sel, out0);
+//    four_to_one_mux_b mux2(a4,a5,a6,a7, sel, out1);
+//    two_to_one_mux_b mux3(out0, out1, sel,out);
+
+endmodule
+
+
+`timescale 1ns / 1ps
+
+module eight_to_one_mux_s_tb(); 
+logic I0, I1, I2, I3, I4, I5, I6, I7, sel0, sel1, sel2, out;
+ 
+      eight_to_one_mux_s test(I0, I1, I2, I3, I4, I5, I6, I7, sel0, sel1, sel2, out);
+     
+      initial begin
+          #100;
+          I0 = 0; I1 = 1; I2 = 1; I3 = 0; I4 = 1; I5 = 0; I6 = 1; I7 = 0; sel0=0; sel1=0; sel2=0; #100;
+          I0 = 0; I1 = 1; I2 = 1; I3 = 0; I4 = 1; I5 = 0; I6 = 1; I7 = 0; sel0=0; sel1=0; sel2=1; #100;
+          I0 = 0; I1 = 1; I2 = 1; I3 = 0; I4 = 1; I5 = 0; I6 = 1; I7 = 0; sel0=0; sel1=1; sel2=0; #100;
+          I0 = 0; I1 = 1; I2 = 1; I3 = 0; I4 = 1; I5 = 0; I6 = 1; I7 = 0; sel0=0; sel1=1; sel2=1; #100;
+          I0 = 0; I1 = 1; I2 = 1; I3 = 0; I4 = 1; I5 = 0; I6 = 1; I7 = 0; sel0=1; sel1=0; sel2=0; #100;
+          I0 = 0; I1 = 1; I2 = 1; I3 = 0; I4 = 1; I5 = 0; I6 = 1; I7 = 0; sel0=1; sel1=0; sel2=1; #100;
+          I0 = 0; I1 = 1; I2 = 1; I3 = 0; I4 = 1; I5 = 0; I6 = 1; I7 = 0; sel0=1; sel1=1; sel2=0; #100;
+          I0 = 0; I1 = 1; I2 = 1; I3 = 0; I4 = 1; I5 = 0; I6 = 1; I7 = 0; sel0=1; sel1=1; sel2=1; #100;
+          
+          I0 = 1; I1 = 0; I2 = 1; I3 = 1; I4 = 0; I5 = 1; I6 = 0; I7 = 1; sel0=0; sel1=0; sel2=0; #100;
+          I0 = 1; I1 = 0; I2 = 1; I3 = 1; I4 = 0; I5 = 1; I6 = 0; I7 = 1; sel0=0; sel1=0; sel2=1; #100;
+          I0 = 1; I1 = 0; I2 = 1; I3 = 1; I4 = 0; I5 = 1; I6 = 0; I7 = 1; sel0=0; sel1=1; sel2=0; #100;
+          I0 = 1; I1 = 0; I2 = 1; I3 = 1; I4 = 0; I5 = 1; I6 = 0; I7 = 1; sel0=0; sel1=1; sel2=1; #100;
+          I0 = 1; I1 = 0; I2 = 1; I3 = 1; I4 = 0; I5 = 1; I6 = 0; I7 = 1; sel0=1; sel1=0; sel2=0; #100;
+          I0 = 1; I1 = 0; I2 = 1; I3 = 1; I4 = 0; I5 = 1; I6 = 0; I7 = 1; sel0=1; sel1=0; sel2=1; #100;
+          I0 = 1; I1 = 0; I2 = 1; I3 = 1; I4 = 0; I5 = 1; I6 = 0; I7 = 1; sel0=1; sel1=1; sel2=0; #100;
+          I0 = 1; I1 = 0; I2 = 1; I3 = 1; I4 = 0; I5 = 1; I6 = 0; I7 = 1; sel0=1; sel1=1; sel2=1; #100;
+
+          end
+
+   endmodule
+
+
+`timescale 1ns / 1ps
+
+module function_with_8_to_1_mux(
+    input logic A ,B, C, D,
+    output logic outf
+    );
+eight_to_one_mux_s mux8(1, D, ~D, D, ~D ,1, 0, D, A, B, C, outf);
+          
+    
+endmodule
+
+
+`timescale 1ns / 1ps
+
+module two_to_four_decoder_b(
+    input logic A0,
+    input logic A1,
+    input logic ed,
+    output logic Y3,
+    output logic Y2,
+    output logic Y1,
+    output logic Y0
+    );
+    assign Y0 = (~A0) & (~A1) & ed;
+    assign Y1 = (~A0) & (A1) & ed;
+    assign Y2 = (A0) & (~A1) & ed;
+    assign Y3 = (A0) & (A1) & ed;
+endmodule
+
+
+`timescale 1ns / 1ps
+
+module two_to_four_decoder_tb();
+logic A0, A1, ed, Y3, Y2, Y1, Y0;
+ 
+      two_to_four_decoder_b test(A0, A1, ed, Y3, Y2, Y1, Y0);
+     
+      initial begin
+          #100; // wait
+           
+          ed = 0; #100;
+          A0=0; A1=0; ed=1; #100;
+          A0=0; A1=1; ed=1; #100;
+          A0=1; A1=0; ed=1; #100;
+          A0=1; A1=1; ed=1; #100;
+
+          end
+     initial
+          $monitor($time,"A0=%d, A1=%d, ed=%d, Y3=%d, Y2=%d Y1=%d, Y0=%d", A0, A1, ed, Y3, Y2, Y1, Y0);
+   endmodule
+
+
+
+
+
+
+
+
