@@ -1,0 +1,30 @@
+package hangmangame.extras;
+
+import java.awt.event.*;
+import cs102.hangman.*;
+import javax.swing.*;
+
+/*Class Discription: This is the controls class for HangmanLetterButtonControls, it updates the 
+ * HangmanModel according to the buttons pressed
+ */
+
+public class HangmanLetterButtonsController implements ActionListener
+{
+ //properties 
+ private Hangman hangman;
+ 
+ //constructor
+ public HangmanLetterButtonsController(Hangman hangman)
+ {
+   this.hangman = hangman;
+ }
+  
+ //implementing ActionListener
+ public void actionPerformed(ActionEvent e)
+ {
+   JButton b = (JButton) e.getSource(); // we first get the source button
+   char c = b.getText().charAt(0);// then take its label as a char
+   hangman.tryThis(c); //update the Hangman
+ }
+ 
+} // end of class HangmanLetterButtonsController

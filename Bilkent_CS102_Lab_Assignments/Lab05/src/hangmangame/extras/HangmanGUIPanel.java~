@@ -1,0 +1,30 @@
+package hangmangame.extras;
+
+import cs102.hangman.HangmanModel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JPanel;
+
+/**
+ * Collection of UI components to form a complete Hangman game. 
+ * View components implement IHangmanView, so they can automatically update
+ * whenever the hangmanModel associated with changes, changes.
+ * Other components are hangman controllers that update the model.
+ * @author david
+ */
+public class HangmanGUIPanel extends JPanel {
+
+   HangmanModel hm;
+   
+   public HangmanGUIPanel( HangmanModel hm) {
+      this.hm = hm;
+      setPreferredSize( new Dimension( 500, 350) );
+      setLayout( new BorderLayout() );
+      setBackground(Color.YELLOW);
+
+      // add controls and views here...
+      
+   }
+   
+}
