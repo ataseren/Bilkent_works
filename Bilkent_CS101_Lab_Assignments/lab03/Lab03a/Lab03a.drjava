@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20190813-220051">
+  <project autorefresh="false" main="" root="" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="Lab03a3.java" package="" timestamp="21-Oct-2019 22:06:10">
+        <select from="668" to="668"/>
+        <scroll column="109" row="0"/>
+      </file>
+      <file name="Lab03a.java" package="" timestamp="21-Oct-2019 21:17:51">
+        <select from="668" to="668"/>
+        <scroll column="109" row="0"/>
+      </file>
+      <file name="Lab03a1.java" package="" timestamp="21-Oct-2019 21:41:33">
+        <select from="668" to="668"/>
+        <scroll column="109" row="0"/>
+      </file>
+      <file name="Lab03a2.java" package="" timestamp="21-Oct-2019 21:49:58">
+        <select from="668" to="668"/>
+        <scroll column="109" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath/>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>

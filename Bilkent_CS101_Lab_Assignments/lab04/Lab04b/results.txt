@@ -1,0 +1,4 @@
+Please enter 6 numbers: 
+Sum is 60.0 and there are 6 numbers.
+Average is 10.0.
+Max is 27 and min is 2.

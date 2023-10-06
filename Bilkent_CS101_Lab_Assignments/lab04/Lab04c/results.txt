@@ -1,0 +1,4 @@
+Please enter numbers:
+Sum is 3815.0 and there are 71 numbers.
+Average is 53.732394366197184.
+Max is 98.0 and min is 2.0.
