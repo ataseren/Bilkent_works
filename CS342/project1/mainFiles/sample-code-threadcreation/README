@@ -1,0 +1,16 @@
+
+
+This is a sample code that shows how to create and use threads.
+
+To compile the program type:
+   make
+
+To run the program, you type:
+  ./cthread  <numthreads> <min> <max>
+
+The number of threads that will be created is <numthreads>.
+
+Each thread will create an output file and will write  integers from <min> to <max> into that file.
+
+To clean, type:
+   make clean

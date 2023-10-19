@@ -1,0 +1,4 @@
+
+
+
+Shows how to use pipe to send/receive data between a parent and a child; or between two children of a parent. For each direction of communication, we need to create another pipe. A pipe is used for sending data in one direction: for example, from parent process to child process. 

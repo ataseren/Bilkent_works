@@ -1,0 +1,84 @@
+\section{POSIX Message Queues}
+
+Processes can communicate with each other by using message queues in
+Linux. You can use the man pages to learn about the message queue
+interface (POSIX message queue API). Just type: {\tt man mq\_overview}
+on your shell and read the related help page.
+
+Here, we provide an example application that uses a message queue
+between two processes to pass information. The application is the
+producer-consumer application. The producer will produce items that
+will be passed to the consumer which will consume the items. The items
+will be passed through the message queue.
+
+The consumer program will create the message queue. Hence, it should
+be run first. The producer process, when started, will open the
+message queue that was created earlier. 
+
+The two programs can share some definitions. We put them into a header
+file called {\tt shareddefs.h}. This header file is shown below. It
+includes the definition of a C structure that will represent an item.
+It also includes the name of the message queue that will be
+created. That name can be any valid file name (starting with
+``/''). Producer and consumer programs will use that name to refer to
+the same message queue.
+
+\VerbatimInput{posixmq/shareddefs.h}
+
+Below, we show the producer program. It opens the message queue by
+calling the {\tt mq\_open} system call (a library function in fact,
+which in turn calls the respective system call) Then, in a while loop,
+it generates and sends messages into the message queue. To send a
+message, we use the {\tt mq\_send} function.  Between two send
+operations we call the sleep function to sleep for a while.
+
+\VerbatimInput{posixmq/producer.c}
+
+Next, we have the program for the consumer process.
+
+\VerbatimInput{posixmq/consumer.c}
+
+The consumer program first creates a message queue with the name
+specified in the shareddefs.h header file. This name is shared by the
+producer and consumer processes. We use the {\tt mq\_open} function to
+create a message queue as well.  After creating the message queue, the
+consumer learns about some of the properties of the message queue by
+calling the mq\_getattr() function. In this case we are learning the
+maximum size of a message that kernel can support. Then we allocate
+that much space for our local buffer to put an incoming item (message)
+from the producer.  Our local buffer is just a character (byte) array
+pointed by bufptr. We use the malloc() function to allocate memory to
+be used as the buffer.
+
+We can compile these programs and obtain the respective executable
+files by using the following Makefile.
+
+\VerbatimInput{posixmq/Makefile}
+
+After editing such a Makefile, we just need to type {\tt make} to
+compile both of the programs and obtain two executable files, i.e.,
+programs: {\tt producer} and {\tt consumer}. Then, in one window, you
+can run the producer program and in another window you can run the
+consumer program. To run the consumer, you can just type the following
+in one window: {\tt consumer} or {\tt ./consumer}
+
+The consumer will create a message queue and will wait on it for the
+arrival of a message.
+
+To run the producer, we can type the following in another window: {\tt
+  producer} or {\tt ./producer}
+
+Producer will start generating items every one second and will send
+them into message queue. 
+
+The consumer process will start running and retrieving the items from
+the message queue. It will print out the content of each item to the
+screen. Producer and consumer processes will run indefinitely until
+you terminate them (by a program like the {\tt kill} command). You can
+type {\tt kill -9 pid} to kill a process whose process id is pid.
+
+
+Note that in the Makefile while compiling the programs we use an
+option {\tt -lrt}. That means we have to link our program with the
+real-time library, {\tt librt}. The is because the message queue
+related API functions are implemented in the rt library.

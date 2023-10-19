@@ -1,0 +1,21 @@
+
+This code is from the following reference: 
+
+[1] http://tharikasblogs.blogspot.com/p/how-to-write-simple-rpc-programme.html
+
+
+
+This folder illustrates the use of RPC. The files in this folder were generated as follows. First we wrote IDL.x. In that we defined the server program (COMPUTE) and procedures (ADD, SUB, MUL, DIV) and their versions, and the parameter structure. Then we used rpcgen to generate the files that you see in this folder. We modified the server and client programs to implement what we want in the server procedures and to call them. Then we compiled using the Makefile here. We obtained the RPC server (IDL_server) and RPC client (IDL_client) programs. We run them. 
+
+to run the server (in one terminal) we type: 
+   sudo ./IDL_server 
+
+
+to run the client (in another terminal), we type: 
+   sudo ./IDL_client localhost
+
+
+The client will ask for two numbers and an arithmetic operator (+, -, *, or /). After each we need to press <enter> key.
+For example when we type, 20 <enter> 30 <enter> + <enter>, the client will call the related remote procedure in the server to add the given numbers, and the server will run the procedure to add and return the result to the client, and the client will print the result as 50. 
+
+Please read reference [1] if you want to get more information. 

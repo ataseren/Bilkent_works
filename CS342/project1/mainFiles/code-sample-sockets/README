@@ -1,0 +1,18 @@
+
+Type make to compile the programs. 
+
+Shows communication between two processes using sockets. Uses TCP sockets (reliable communication).
+The processes will run in the same machine. IP address "127.0.0.1" means the local host. If you run the server in another machine, then you need to set the IP address of that machine in the file tcpshared.h.
+
+tcpserver will be started first.
+./tcpserver
+
+it will be running all the time and waiting for connection requests from a client.
+
+tcpclient will started afterwards.
+./tcpclient
+
+tcpclient will make connection to server. then server will send data (100 integers) to client. client
+will receive them and will terminate. tcpserver will continue running and waiting for another connection request.
+we can run tcpclient again. it will again make a connection request to server and connection will be established and
+server will send integers to client again. then client will terminated. server will again wait for another connection request. 

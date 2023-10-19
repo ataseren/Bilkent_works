@@ -1,0 +1,11 @@
+
+
+This program illustrates use of fork and exec system calls. That means creation of a new process and running a different process in a process. 
+
+The program created two child processes.
+
+One of them is writing a sequence of integers to the screen.
+
+The other one is executing another program using exec system call.
+
+The child processes are executing concurrently.

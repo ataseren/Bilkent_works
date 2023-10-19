@@ -1,0 +1,6 @@
+
+
+
+Shows how to create a new process using the fork() system call.
+Parent creates 3 children.
+Children run concurrently.

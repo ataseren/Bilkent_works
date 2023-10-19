@@ -1,0 +1,8 @@
+
+
+A simple program that is copying one file into another  one.
+
+It uses low level I/O functions read() and write().
+
+There are corresponding read and write system calls.
+
